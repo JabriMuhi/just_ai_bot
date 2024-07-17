@@ -8,13 +8,13 @@ import org.springframework.web.util.UriComponentsBuilder
 import java.util.*
 
 @Service
-class VkBotService {
+class VkBotService(
+    private val restTemplate: RestTemplate,
+    private val dotenv: Dotenv
+) {
 
-    private val restTemplate = RestTemplate()
-    private val dotenv = Dotenv.configure().directory("./").load()
     private val accessToken = dotenv["VK_ACCESS_TOKEN"]
     private val logger = LoggerFactory.getLogger(VkBotService::class.java)
-
     fun sendMessage(userId: Int, message: String) {
         val randomId = UUID.randomUUID().hashCode()
         logger.info("Sending message to user $userId: $message")

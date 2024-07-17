@@ -23,10 +23,12 @@ dependencies {
     implementation("org.springframework.boot:spring-boot-starter-web")
     implementation("com.fasterxml.jackson.module:jackson-module-kotlin")
     implementation("org.jetbrains.kotlin:kotlin-reflect")
-    implementation("org.jetbrains.kotlin:kotlin-stdlib-jdk8")
     implementation("io.github.cdimascio:dotenv-java:2.2.0")
+
     testImplementation("org.springframework.boot:spring-boot-starter-test")
     testImplementation("org.jetbrains.kotlin:kotlin-test-junit5")
+    testImplementation("org.mockito:mockito-core:4.2.0")
+    testImplementation("org.mockito.kotlin:mockito-kotlin:4.0.0")
     testRuntimeOnly("org.junit.platform:junit-platform-launcher")
 }
 

@@ -17,7 +17,7 @@ VK_ACCESS_TOKEN берется из .env файла, который добавл
 ***
 Прямая связь со мной:
 
-<a href="https://t.me/@JabriMuhi">
+<a href="https://t.me/JabriMuhi">
     <img src="https://cdn.worldvectorlogo.com/logos/telegram-1.svg" alt="Telegram" width="80" height="80">
 </a>
 

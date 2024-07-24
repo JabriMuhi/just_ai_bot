@@ -27,7 +27,7 @@ dependencies {
 
     testImplementation("org.springframework.boot:spring-boot-starter-test")
     testImplementation("org.jetbrains.kotlin:kotlin-test-junit5")
-    testImplementation("org.mockito:mockito-core:4.2.0")
+    testImplementation("org.mockito:mockito-inline:4.8.0")
     testImplementation("org.mockito.kotlin:mockito-kotlin:4.0.0")
     testRuntimeOnly("org.junit.platform:junit-platform-launcher")
 }
@@ -45,4 +45,13 @@ tasks.withType<Test> {
 
 tasks.withType<JavaCompile> {
     options.encoding = "UTF-8"
+}
+
+springBoot {
+    mainClass.set("com.just_ai.vk_bot.VkBotApplication")
+}
+
+tasks.register<Copy>("copyJar") {
+    from(tasks.named("bootJar"))
+    into("build/libs")
 }

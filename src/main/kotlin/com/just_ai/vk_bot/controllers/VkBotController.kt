@@ -17,7 +17,7 @@ class VkBotController(private val vkBotService: VkBotService) {
 
         // Подтверждение url ботом
         if (message.type == "confirmation") {
-            return ResponseEntity.ok("9f5e5b03")
+            return ResponseEntity.ok("cf1856f5")
         }
 
         if (message.type == "message_new") {
@@ -28,8 +28,12 @@ class VkBotController(private val vkBotService: VkBotService) {
 
                 logger.info("Received new message from user $userId: $text")
 
-                vkBotService.sendMessage(userId, "Вы сказали: $text")
-                logger.info("Sent message to user $userId: Вы сказали: $text")
+                try {
+                    vkBotService.sendMessage(userId, "Вы сказали: $text")
+                    logger.info("Sent message to user $userId: Вы сказали: $text")
+                } catch (e: Exception) {
+                    logger.error("Failed to send message to user $userId: ${e.message}")
+                }
             } else {
                 logger.warn("Message object is null or invalid")
             }

@@ -2,22 +2,26 @@ package com.just_ai.vk_bot.controllers
 
 import com.just_ai.vk_bot.models.VkMessage
 import com.just_ai.vk_bot.services.VkBotService
+import io.github.cdimascio.dotenv.Dotenv
 import org.slf4j.LoggerFactory
 import org.springframework.http.ResponseEntity
 import org.springframework.web.bind.annotation.*
 
 @RestController
 @RequestMapping("/vk")
-class VkBotController(private val vkBotService: VkBotService) {
+class VkBotController(
+    private val vkBotService: VkBotService,
+    private val dotenv: Dotenv
+) {
 
     private val logger = LoggerFactory.getLogger(VkBotController::class.java)
 
     @PostMapping
     fun handleMessage(@RequestBody message: VkMessage): ResponseEntity<String> {
-
+        val confirmationCode = dotenv["CONFIRMATION_CODE"] ?: "default_code"
         // Подтверждение url ботом
         if (message.type == "confirmation") {
-            return ResponseEntity.ok("cf1856f5")
+            return ResponseEntity.ok(confirmationCode)
         }
 
         if (message.type == "message_new") {
